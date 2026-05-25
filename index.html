@@ -1,0 +1,413 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CafeBurrito</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff9966, #ff5e62);
+      overflow-x: hidden;
+      color: white;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 60px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 18px;
+      color: #ffe5dc;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #fff3ef;
+    }
+
+    select option {
+      color: black;
+    }
+
+    .rating-group {
+      margin-bottom: 15px;
+    }
+
+    .rating-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      background: white;
+      color: #ff5e62;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .reviews {
+      max-height: 700px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .review-card h3 {
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+
+    .location {
+      color: #ffe5dc;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .ratings {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .rating-box {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 10px;
+      border-radius: 14px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .feedback {
+      line-height: 1.7;
+      color: #fff7f5;
+    }
+
+    .overall {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    @media(max-width:900px) {
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+
+      <h1>☕ CafeBurrito</h1>
+
+      <p>
+        Discover cafés through real reviews & ratings.
+      </p>
+
+    </div>
+
+    <div class="grid">
+
+      <!-- REVIEW FORM -->
+
+      <div class="card">
+
+        <h2>Add Your Review</h2>
+
+        <input type="text" id="cafeName" placeholder="Enter Cafe Name">
+
+        <input type="text" id="location" placeholder="Enter Location">
+
+        <div class="rating-group">
+          <label>Food Quality ⭐</label>
+          <select id="foodRating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option selected>5</option>
+          </select>
+        </div>
+
+        <div class="rating-group">
+          <label>Environment ⭐</label>
+          <select id="environmentRating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option selected>5</option>
+          </select>
+        </div>
+
+        <div class="rating-group">
+          <label>Staff Behaviour ⭐</label>
+          <select id="staffRating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option selected>5</option>
+          </select>
+        </div>
+
+        <div class="rating-group">
+          <label>Overall Rating ⭐</label>
+          <select id="overallRating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option selected>5</option>
+          </select>
+        </div>
+
+        <textarea id="feedback" placeholder="Write your feedback..."></textarea>
+
+        <button onclick="addReview()">
+          Submit Review
+        </button>
+
+      </div>
+
+      <!-- REVIEW SECTION -->
+
+      <div class="card reviews">
+
+        <h2>Public Reviews</h2>
+
+        <div id="reviewContainer">
+
+          <div class="review-card">
+
+            <h3>Mocha Haven ☕</h3>
+
+            <p class="location">
+              Lucknow
+            </p>
+
+            <div class="ratings">
+
+              <div class="rating-box">
+                Food: ⭐⭐⭐⭐⭐
+              </div>
+
+              <div class="rating-box">
+                Environment: ⭐⭐⭐⭐
+              </div>
+
+              <div class="rating-box">
+                Staff: ⭐⭐⭐⭐⭐
+              </div>
+
+              <div class="rating-box">
+                Overall: ⭐⭐⭐⭐⭐
+              </div>
+
+            </div>
+
+            <p class="feedback">
+              Amazing ambience and great coffee. Perfect place for hanging out with friends.
+            </p>
+
+            <div class="overall">
+              Overall Experience: 5/5 ⭐
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function createStars(num) {
+
+      return '⭐'.repeat(num);
+    }
+
+    function addReview() {
+
+      const cafeName =
+        document.getElementById('cafeName').value;
+
+      const location =
+        document.getElementById('location').value;
+
+      const foodRating =
+        document.getElementById('foodRating').value;
+
+      const environmentRating =
+        document.getElementById('environmentRating').value;
+
+      const staffRating =
+        document.getElementById('staffRating').value;
+
+      const overallRating =
+        document.getElementById('overallRating').value;
+
+      const feedback =
+        document.getElementById('feedback').value;
+
+      if (
+        cafeName === '' ||
+        location === '' ||
+        feedback === ''
+      ) {
+
+        alert('Please fill all fields!');
+
+        return;
+      }
+
+      const reviewCard =
+        document.createElement('div');
+
+      reviewCard.classList.add('review-card');
+
+      reviewCard.innerHTML =
+        `
+        <h3>${cafeName} ☕</h3>
+
+        <p class="location">
+          ${location}
+        </p>
+
+        <div class="ratings">
+
+          <div class="rating-box">
+            Food: ${createStars(foodRating)}
+          </div>
+
+          <div class="rating-box">
+            Environment: ${createStars(environmentRating)}
+          </div>
+
+          <div class="rating-box">
+            Staff: ${createStars(staffRating)}
+          </div>
+
+          <div class="rating-box">
+            Overall: ${createStars(overallRating)}
+          </div>
+
+        </div>
+
+        <p class="feedback">
+          ${feedback}
+        </p>
+
+        <div class="overall">
+          Overall Experience: ${overallRating}/5 ⭐
+        </div>
+      `;
+
+      document.getElementById('reviewContainer')
+        .prepend(reviewCard);
+
+      document.getElementById('cafeName').value = '';
+      document.getElementById('location').value = '';
+      document.getElementById('feedback').value = '';
+
+    }
+
+  </script>
+
+</body>
+
+</html>
+```
